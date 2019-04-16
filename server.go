@@ -12,21 +12,21 @@ type Player struct {
 	Wins int
 }
 
-// PlayerScore stores score information about players
-type PlayerScore interface {
-	GetPlayerScore(name string) int
+// PlayerStore stores score information about players
+type PlayerStore interface {
+	GetPlayerStore(name string) int
 	RecordWin(name string)
 	GetLeague() League
 }
 
 // PlayerServer is an HTTP interface for player information
 type PlayerServer struct {
-	store PlayerScore
+	store PlayerStore
 	http.Handler
 }
 
 // NewPlayerServer takes our dependencies and does a one-time setup of creating the router
-func NewPlayerServer(store PlayerScore) *PlayerServer {
+func NewPlayerServer(store PlayerStore) *PlayerServer {
 	p := new(PlayerServer)
 
 	p.store = store
@@ -60,7 +60,7 @@ func (p *PlayerServer) playerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *PlayerServer) showScore(w http.ResponseWriter, player string) {
-	score := p.store.GetPlayerScore(player)
+	score := p.store.GetPlayerStore(player)
 
 	if score == 0 {
 		w.WriteHeader(http.StatusNotFound)

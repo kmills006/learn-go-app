@@ -38,7 +38,7 @@ func TestFileSystemStore(t *testing.T) {
 
 		assertNoError(t, err)
 
-		got := store.GetPlayerScore("Chris")
+		got := store.GetPlayerStore("Chris")
 		want := 23
 
 		assertScoreEquals(t, got, want)
@@ -57,7 +57,7 @@ func TestFileSystemStore(t *testing.T) {
 
 		store.RecordWin("Chris")
 
-		got := store.GetPlayerScore("Chris")
+		got := store.GetPlayerStore("Chris")
 		want := 24
 
 		assertScoreEquals(t, got, want)
@@ -76,7 +76,7 @@ func TestFileSystemStore(t *testing.T) {
 
 		store.RecordWin("Pepper")
 
-		got := store.GetPlayerScore("Pepper")
+		got := store.GetPlayerStore("Pepper")
 		want := 1
 
 		assertScoreEquals(t, got, want)

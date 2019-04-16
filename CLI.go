@@ -4,11 +4,11 @@ import "io"
 
 // CLI : TODO
 type CLI struct {
-	playerScore PlayerScore
+	playerStore PlayerStore
 	in          io.Reader
 }
 
 // PlayPoker starts a new game of poker from the CLI
 func (c *CLI) PlayPoker() {
-	c.playerScore.RecordWin("Chris")
+	c.playerStore.RecordWin("Chris")
 }

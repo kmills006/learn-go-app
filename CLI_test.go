@@ -8,23 +8,23 @@ import (
 func TestCLI(t *testing.T) {
 	t.Run("record chris win from user input", func(t *testing.T) {
 		in := strings.NewReader("Chris wins\n")
-		playerScore := &StubPlayerScore{}
+		playerStore := &StubPlayerStore{}
 
-		cli := &CLI{playerScore, in}
+		cli := &CLI{playerStore, in}
 
 		cli.PlayPoker()
 
-		assertPlayerWin(t, playerScore, "Chris")
+		assertPlayerWin(t, playerStore, "Chris")
 	})
 
 	t.Run("record cleo win from user input", func(t *testing.T) {
 		in := strings.NewReader("Cleo wins\n")
-		playerScore := &StubPlayerScore{}
+		playerStore := &StubPlayerStore{}
 
-		cli := &CLI{playerScore, in}
+		cli := &CLI{playerStore, in}
 
 		cli.PlayPoker()
 
-		assertPlayerWin(t, playerScore, "Cleo")
+		assertPlayerWin(t, playerStore, "Cleo")
 	})
 }

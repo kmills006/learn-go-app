@@ -10,28 +10,28 @@ import (
 	"testing"
 )
 
-type StubPlayerScore struct {
+type StubPlayerStore struct {
 	scores   map[string]int
 	winCalls []string
 	league   League
 }
 
-func (s *StubPlayerScore) GetPlayerScore(name string) int {
+func (s *StubPlayerStore) GetPlayerStore(name string) int {
 	score := s.scores[name]
 
 	return score
 }
 
-func (s *StubPlayerScore) RecordWin(name string) {
+func (s *StubPlayerStore) RecordWin(name string) {
 	s.winCalls = append(s.winCalls, name)
 }
 
-func (s *StubPlayerScore) GetLeague() League {
+func (s *StubPlayerStore) GetLeague() League {
 	return s.league
 }
 
 func TestGETPlayers(t *testing.T) {
-	store := StubPlayerScore{
+	store := StubPlayerStore{
 		map[string]int{
 			"Pepper": 20,
 			"Floyd":  10,
@@ -78,7 +78,7 @@ func TestGETPlayers(t *testing.T) {
 }
 
 func TestStoreWins(t *testing.T) {
-	store := StubPlayerScore{
+	store := StubPlayerStore{
 		map[string]int{},
 		nil,
 		nil,
@@ -107,7 +107,7 @@ func TestStoreWins(t *testing.T) {
 }
 
 func TestLeague(t *testing.T) {
-	store := StubPlayerScore{}
+	store := StubPlayerStore{}
 	server := NewPlayerServer(&store)
 
 	t.Run("it returns 200 on /league", func(t *testing.T) {
@@ -126,7 +126,7 @@ func TestLeague(t *testing.T) {
 			{"Tiesta", 15},
 		}
 
-		store := StubPlayerScore{nil, nil, wantedLeague}
+		store := StubPlayerStore{nil, nil, wantedLeague}
 		server := NewPlayerServer(&store)
 
 		request := newGetLeagueRequest()
@@ -206,7 +206,7 @@ func assertResponseBody(t *testing.T, got, want string) {
 	}
 }
 
-func assertPlayerWin(t *testing.T, store *StubPlayerScore, winner string) {
+func assertPlayerWin(t *testing.T, store *StubPlayerStore, winner string) {
 	t.Helper()
 
 	if len(store.winCalls) != 1 {

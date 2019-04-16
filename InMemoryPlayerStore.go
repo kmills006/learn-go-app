@@ -10,6 +10,10 @@ type InMemoryPlayerStore struct {
 	store map[string]int
 }
 
+func (i *InMemoryPlayerStore) GetLeague() []Player {
+	return nil
+}
+
 // RecordWin will record a players win
 func (i *InMemoryPlayerStore) RecordWin(name string) {
 	i.store[name]++

@@ -13,7 +13,7 @@ import (
 type StubPlayerScore struct {
 	scores   map[string]int
 	winCalls []string
-	league   []Player
+	league   League
 }
 
 func (s *StubPlayerScore) GetPlayerScore(name string) int {
@@ -26,7 +26,7 @@ func (s *StubPlayerScore) RecordWin(name string) {
 	s.winCalls = append(s.winCalls, name)
 }
 
-func (s *StubPlayerScore) GetLeague() []Player {
+func (s *StubPlayerScore) GetLeague() League {
 	return s.league
 }
 

@@ -13,6 +13,9 @@ func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
 	return 123
 }
 
+// RecordWin : TODO
+func (i *InMemoryPlayerStore) RecordWin(name string) {}
+
 func main() {
 	server := &PlayerServer{&InMemoryPlayerStore{}}
 

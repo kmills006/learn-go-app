@@ -6,7 +6,7 @@ import (
 
 // FileSystemPlayerStore stores players in the data store
 type FileSystemPlayerStore struct {
-	database io.ReadSeeker
+	database io.ReadWriteSeeker
 }
 
 // GetLeague returns the players in the league from the data store

@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io"
+	"os"
 )
 
 // FileSystemPlayerStore stores players in the data store
@@ -12,7 +13,7 @@ type FileSystemPlayerStore struct {
 }
 
 // NewFileSystemPlayerStore handles the initialization of the File System data store
-func NewFileSystemPlayerStore(database io.ReadWriteSeeker) *FileSystemPlayerStore {
+func NewFileSystemPlayerStore(database *os.File) *FileSystemPlayerStore {
 	database.Seek(0, 0)
 
 	league, _ := NewLeague(database)

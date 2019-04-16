@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -77,7 +76,7 @@ func TestFileSystemStore(t *testing.T) {
 }
 
 // createTempFile creates a temporary file with some data inside of it
-func createTempFile(t *testing.T, initialData string) (io.ReadWriteSeeker, func()) {
+func createTempFile(t *testing.T, initialData string) (*os.File, func()) {
 	t.Helper()
 
 	// TempFile creates a temporary file

@@ -205,3 +205,15 @@ func assertResponseBody(t *testing.T, got, want string) {
 		t.Errorf("response body is wrong, got %s, want %s", got, want)
 	}
 }
+
+func assertPlayerWin(t *testing.T, store *StubPlayerScore, winner string) {
+	t.Helper()
+
+	if len(store.winCalls) != 1 {
+		t.Fatalf("got %d calls to RecordWin want %d", len(store.winCalls), 1)
+	}
+
+	if store.winCalls[0] != winner {
+		t.Errorf("did not store correct winner got '%s' want '%s'", store.winCalls[0], winner)
+	}
+}

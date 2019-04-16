@@ -8,6 +8,19 @@ import (
 // FileSystemPlayerStore stores players in the data store
 type FileSystemPlayerStore struct {
 	database io.ReadWriteSeeker
+	league   League
+}
+
+// NewFileSystemPlayerStore handles the initialization of the File System data store
+func NewFileSystemPlayerStore(database io.ReadWriteSeeker) *FileSystemPlayerStore {
+	database.Seek(0, 0)
+
+	league, _ := NewLeague(database)
+
+	return &FileSystemPlayerStore{
+		database: database,
+		league:   league,
+	}
 }
 
 // GetLeague returns the players in the league from the data store

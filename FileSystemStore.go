@@ -16,6 +16,9 @@ type FileSystemPlayerStore struct {
 func NewFileSystemPlayerStore(database *os.File) (*FileSystemPlayerStore, error) {
 	database.Seek(0, 0)
 
+	// file.Stat returns stats on our file. This lets us check the size of the file,
+	// if it's empty we Write an empty JSON array and Seek back to the start
+	// ready for the rest of the code.
 	info, err := database.Stat()
 
 	if err != nil {

@@ -14,10 +14,6 @@ type CLI struct {
 	alerter     BlindAlerter
 }
 
-type BlindAlerter interface {
-	ScheduleAlertAt(duration time.Duration, amount int)
-}
-
 // NewCLI is a constructor that will automatically wrap the Scanner
 func NewCLI(store PlayerStore, in io.Reader, alerter BlindAlerter) *CLI {
 	return &CLI{
@@ -53,6 +49,6 @@ func (c *CLI) scheduleBlindAlerts() {
 
 	for _, blind := range blinds {
 		c.alerter.ScheduleAlertAt(blindTime, blind)
-		blindTime = blindTime + 10*time.Minute
+		blindTime = blindTime + 10*time.Second
 	}
 }

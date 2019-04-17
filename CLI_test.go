@@ -61,16 +61,16 @@ func TestCLI(t *testing.T) {
 
 		cases := []scheduledAlert{
 			{0 * time.Second, 100},
-			{10 * time.Minute, 200},
-			{20 * time.Minute, 300},
-			{30 * time.Minute, 400},
-			{40 * time.Minute, 500},
-			{50 * time.Minute, 600},
-			{60 * time.Minute, 800},
-			{70 * time.Minute, 1000},
-			{80 * time.Minute, 2000},
-			{90 * time.Minute, 4000},
-			{100 * time.Minute, 8000},
+			{10 * time.Second, 200},
+			{20 * time.Second, 300},
+			{30 * time.Second, 400},
+			{40 * time.Second, 500},
+			{50 * time.Second, 600},
+			{60 * time.Second, 800},
+			{70 * time.Second, 1000},
+			{80 * time.Second, 2000},
+			{90 * time.Second, 4000},
+			{100 * time.Second, 8000},
 		}
 
 		for i, want := range cases {

@@ -60,7 +60,7 @@ func (f *FileSystemPlayerStore) GetLeague() League {
 }
 
 // GetPlayerStore returns an individual players score
-func (f *FileSystemPlayerStore) GetPlayerStore(name string) int {
+func (f *FileSystemPlayerStore) GetPlayerScore(name string) int {
 	player := f.league.Find(name)
 
 	if player != nil {

@@ -34,6 +34,23 @@ func initializePlayerDbFile(file *os.File) error {
 	return nil
 }
 
+// FileSystemPlayerStoreFromFile opens a data file and creates the file system player store
+func FileSystemPlayerStoreFromFile(path string) (*FileSystemPlayerStore, error) {
+	database, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE, 0666)
+
+	if err != nil {
+		return nil, fmt.Errorf("problem opening %s, %v", path, err)
+	}
+
+	store, err := NewFileSystemPlayerStore(database)
+
+	if err != nil {
+		return nil, fmt.Errorf("problem creating file system player store, %v", err)
+	}
+
+	return store, nil
+}
+
 // NewFileSystemPlayerStore handles the initialization of the File System data store
 func NewFileSystemPlayerStore(file *os.File) (*FileSystemPlayerStore, error) {
 	err := initializePlayerDbFile(file)

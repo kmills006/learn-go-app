@@ -33,6 +33,6 @@ func main() {
 		log.Fatalf("could not listen on port 5000 %v", err)
 	}
 
-	game := poker.CLI{store, os.Stdin}
+	game := poker.NewCLI(store, os.Stdin)
 	game.PlayPoker()
 }

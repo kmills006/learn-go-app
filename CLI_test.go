@@ -1,4 +1,4 @@
-package poker
+package poker_test
 
 import (
 	"strings"

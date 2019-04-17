@@ -9,18 +9,21 @@ import (
 	poker "github.com/learn-go-app"
 )
 
+func (s scheduledAlert) String() string {
+	return fmt.Sprintf("%d chips %v", s.amount, s.at)
+}
+
 type SpyBlindAlerter struct {
-	alerts []struct {
-		scheduledAt time.Duration
-		amount      int
-	}
+	alerts []scheduledAlert
 }
 
 func (s *SpyBlindAlerter) ScheduleAlertAt(duration time.Duration, amount int) {
-	s.alerts = append(s.alerts, struct {
-		scheduledAt time.Duration
-		amount      int
-	}{duration, amount})
+	s.alerts = append(s.alerts, scheduledAlert{duration, amount})
+}
+
+type scheduledAlert struct {
+	at     time.Duration
+	amount int
 }
 
 func TestCLI(t *testing.T) {
@@ -88,7 +91,7 @@ func TestCLI(t *testing.T) {
 					t.Errorf("got amount %d, want %d", amountGot, c.expectedAmount)
 				}
 
-				scheduledTimeGot := alert.scheduledAt
+				scheduledTimeGot := alert.at
 
 				if scheduledTimeGot != c.expectedScheduleTime {
 					t.Errorf("got scheduled time of %v, want %v", scheduledTimeGot, c.expectedScheduleTime)
